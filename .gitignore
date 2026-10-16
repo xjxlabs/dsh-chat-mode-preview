@@ -1,0 +1,16 @@
+# Private execution state and dependencies are never release inputs.
+.preview/
+node_modules/
+**/node_modules/
+**/.env
+**/.env.*
+!**/.env.example
+**/.credentials*
+**/*.log
+**/*.tgz
+**/coverage/
+**/*.tsbuildinfo
+evidence/
+runtime-home*/
+browser-profile*/
+.DS_Store

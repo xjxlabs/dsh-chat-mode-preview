@@ -1,0 +1,14 @@
+{
+  "name": "dsh-chat-coding-experimental-preview",
+  "version": "0.1.0-preview.1",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@11.7.0",
+  "engines": { "node": "^22.19.0 || >=24.0.0" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "setup": "node scripts/preview.mjs setup",
+    "start": "node scripts/preview.mjs start"
+  }
+}

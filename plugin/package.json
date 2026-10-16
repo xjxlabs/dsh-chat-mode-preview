@@ -1,0 +1,82 @@
+{
+  "name": "dsh-plugin-no-workspace",
+  "version": "1.0.1",
+  "description": "Start and detach standalone chats without a mandatory workspace in DeepSeek Harness while preserving the native workspace UI.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./preset-root": {
+      "default": "./lib/preset-root.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "presets",
+    "cordis.patch.yml",
+    "plugin.client.js"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpookySandwich/dsh-plugin-no-workspace.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis-plugin",
+    "no-workspace",
+    "workspace-free",
+    "direct-chat",
+    "standalone-chat"
+  ],
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "pretest": "npm run build",
+    "prepack": "npm run build",
+    "test": "node scripts/build-client.mjs --check && node --test test/build-client.test.mjs && node --test test/chat-runtime.test.mjs && node --test test/chat-tools-policy.test.mjs && node --test test/chat-preset-admission.test.mjs && node --test test/rpc.test.mjs && node test/index.test.mjs && node test/robustness.test.mjs && node --test test/client-loading.test.mjs && node --test test/persistence.test.mjs && node --test test/client-interactions.test.mjs",
+    "test:e2e": "node scripts/e2e/run.mjs",
+    "test:p1b": "node scripts/p1/run-p1b.mjs",
+    "test:p1c": "node scripts/p1/run-p1c.mjs",
+    "test:p1d": "node scripts/p1/run-p1d.mjs",
+    "test:p1e": "node scripts/p1/run-p1e.mjs",
+    "check:package": "node scripts/check-package.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-api-workspace-controller",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tool-web": "^0.1.2-rc.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tool-web": { "optional": true }
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "jsdom": "^29.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

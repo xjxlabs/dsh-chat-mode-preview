@@ -1,0 +1,21 @@
+# dsh-plugin-no-workspace: enable standalone chats while preserving DSH's
+# native workspace browser, picker, menus, directory flow, and view options.
+- insert:
+    - id: no-workspace-preset-root
+      name: dsh-plugin-no-workspace/preset-root
+
+    - id: no-workspace
+      name: dsh-plugin-no-workspace
+      config:
+        dshHome: !!js process.env.DSH_HOME
+
+- id: agent-presets
+  name: '@deepseek-ai/dsh-agent-presets'
+  inject: [noWorkspacePresetRoot]
+  config:
+    default: standard
+    roots:
+      - path: !!js ctx.noWorkspacePresetRoot.path
+        trust: system
+    includeShippedRoot: true
+    includeUserRoot: true

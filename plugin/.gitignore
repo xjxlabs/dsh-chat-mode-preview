@@ -1,0 +1,5 @@
+node_modules/
+scratch/
+.tempmediaStorage/
+*.log
+*.tgz
